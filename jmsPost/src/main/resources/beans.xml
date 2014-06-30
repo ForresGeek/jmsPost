@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	
+		http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core.xsd"
+		>
+
+
+
+
+
+<bean id="jmsContext" class="com.elende.restservice.JmsContext">
+<property name="connectionFactory" ref="cachedConnectionFactory"></property>
+ <property name="destination" ref="sciDest"/>
+ <property name="messageConvertor" ref="messageConvertor"></property>
+</bean>
+
+
+<bean id="cachedConnectionFactory"    class="org.springframework.jms.connection.CachingConnectionFactory">
+	<property name="targetConnectionFactory" ref="jmsConnectionFactory"/>
+	<property name="sessionCacheSize" value="2"/>
+	<property name="cacheProducers" value="true"/>
+</bean>
+  
+
+<bean id="jmsConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+        <property name="brokerURL" value="tcp://localhost:61616" />
+         <property name="userName" value="admin" />
+  		 <property name="password" value="admin" />
+</bean>
+
+<bean id="jmsConnection" factory-bean="cachedConnectionFactory"  factory-method="createConnection"/>
+
+
+
+<bean id="jmsSession" factory-bean="jmsConnection" factory-method="createSession">
+<constructor-arg value="false"/>
+<constructor-arg value="0"/>
+</bean>
+ 
+ 
+
+<bean id="jmsProducer" factory-bean="jmsSession" factory-method="createProducer">
+ 	<constructor-arg ref="sciDest"/>
+ </bean>
+
+   <bean id="sciDest" class="org.apache.activemq.command.ActiveMQQueue">
+          <constructor-arg value="CHI.SEARCH" />
+   </bean>
+
+	<bean id="messageConvertor"
+    	class="com.elende.restservice.ChiQueryConvertor">
+    </bean>
+
+<!-- 
+	<bean id="producerTemplate"
+    	class="org.springframework.jms.core.JmsTemplate">
+    	<property name="connectionFactory" ref="cachedConnectionFactory"/>
+    	<property name="defaultDestination" ref="sciDest" />
+    	<property name="messageConverter" ref="messageConvertor"/>
+    </bean>
+-->
+
+
+
+
+</beans>
