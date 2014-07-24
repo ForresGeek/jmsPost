@@ -5,6 +5,7 @@ import javax.jms.MessageProducer;
 import javax.jms.Session;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServlet;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -66,9 +67,6 @@ public class jmsPost   {
 				@PathParam("Id") String  Id 
 			)  		
 	  {
-
-		  
-		  
 		  
 		  MessageProducer producer = (MessageProducer) servletContext.getAttribute(ContextListener.ACTIVE_MQ_PRODUCER);
 		  Session session = (Session) servletContext.getAttribute(ContextListener.ACTIVE_MQ_SESSION);
@@ -94,6 +92,58 @@ public class jmsPost   {
 		
 		  return "OK:"+chi.hashCode();
 	  }
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+
+	  @POST
+	  @Path("/{IdType}/{Id}")
+	  @Produces(MediaType.TEXT_PLAIN)
+	  @Consumes(MediaType.APPLICATION_JSON)
+
+	  public String jsonPost(CHIQuery chi)  		
+	  {
+		  
+		  MessageProducer producer = (MessageProducer) servletContext.getAttribute(ContextListener.ACTIVE_MQ_PRODUCER);
+		  Session session = (Session) servletContext.getAttribute(ContextListener.ACTIVE_MQ_SESSION);
+
+		  LOGGER.trace("Received Query:"+chi.toString() + " "+chi.hashCode());
+				  
+		  
+		  Message msg;
+		try {
+			msg = QueryConvertor.toMessage(chi,session);
+			 producer.send(msg);
+			 
+		} catch (JMSException e) {
+			// TODO Auto-generated catch block
+			LOGGER.error("Error sending message",e);
+		}
+		  
+		
+		  return "OK:"+chi.hashCode();
+	  }
+
+	  
+	  
+	  
+	   
+	   
+	  
+	  
+	  	  
+	  
+	  
+	  
+	  
+	  
+	  
 
 	public ServletContext getServletContext() {
 		return servletContext;
