@@ -58,10 +58,9 @@ public class jmsPost   {
 	  
 	  
 	  
-	  
+	/*  
 	  @POST
-	  @Path("/{IdType}/{Id}")
-	  @Produces(MediaType.TEXT_PLAIN)
+		  @Produces(MediaType.TEXT_PLAIN)
 	public String newPost(
 				@PathParam("IdType") String IdType ,
 				@PathParam("Id") String  Id 
@@ -93,7 +92,7 @@ public class jmsPost   {
 		  return "OK:"+chi.hashCode();
 	  }
 	  
-	  
+	  */
 	  
 	  
 	  
@@ -103,17 +102,15 @@ public class jmsPost   {
 	  
 
 	  @POST
-	  @Path("/{IdType}/{Id}")
 	  @Produces(MediaType.TEXT_PLAIN)
 	  @Consumes(MediaType.APPLICATION_JSON)
-
 	  public String jsonPost(CHIQuery chi)  		
 	  {
 		  
 		  MessageProducer producer = (MessageProducer) servletContext.getAttribute(ContextListener.ACTIVE_MQ_PRODUCER);
 		  Session session = (Session) servletContext.getAttribute(ContextListener.ACTIVE_MQ_SESSION);
 
-		  LOGGER.trace("Received Query:"+chi.toString() + " "+chi.hashCode());
+		  LOGGER.trace("Received Query:"+chi.toString() );
 				  
 		  
 		  Message msg;
@@ -127,7 +124,7 @@ public class jmsPost   {
 		}
 		  
 		
-		  return "OK:"+chi.hashCode();
+		  return "OK";
 	  }
 
 	  

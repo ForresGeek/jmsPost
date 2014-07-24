@@ -20,8 +20,13 @@ public class QueryConvertor {
 	if (arg0 instanceof MapMessage)
 	{
 		chi = new CHIQuery();
-		chi.setId(((MapMessage) arg0).getString("Id"));
-		chi.setIdType(((MapMessage) arg0).getString("IdType"));
+		
+		chi.setDOB(((MapMessage) arg0).getString("DOB"));
+		chi.setForename(((MapMessage) arg0).getString("forename"));
+		chi.setSurname(((MapMessage) arg0).getString("surname"));
+		chi.setUniqueIdentifier(((MapMessage) arg0).getString("uniqueIdentifier"));
+		chi.setNhsNumber(((MapMessage) arg0).getString("nhsNumber"));
+		
 		isCasper = ((MapMessage)arg0).getBooleanProperty("ISCASPER");
 		
 		if(!isCasper)
@@ -41,8 +46,15 @@ public static Message toMessage(CHIQuery arg0, Session arg1) throws JMSException
 
 	MapMessage message = arg1.createMapMessage();
     message.setString("CasperSerial",UUID.randomUUID().toString());
-	message.setString("Id",arg0.getId());
-	message.setString("IdType",arg0.getIdType());
+	
+	
+	message.setString("DOB", arg0.getDOB());
+	message.setString("forename", arg0.getForename());
+	message.setString("surname", arg0.getSurname());
+	message.setString("uniqueIdentifier", arg0.getUniqueIdentifier());
+	message.setString("nhsNumber", arg0.getNhsNumber());
+		
+	
 	//This is the secret Casper signature.. if this isn't here... we won't process it..
 	message.setBooleanProperty("ISCASPER",true);
 

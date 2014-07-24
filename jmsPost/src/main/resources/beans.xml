@@ -10,12 +10,6 @@
 
 
 
-<bean id="jmsContext" class="com.elende.restservice.JmsContext">
-<property name="connectionFactory" ref="cachedConnectionFactory"></property>
- <property name="destination" ref="sciDest"/>
- <property name="messageConvertor" ref="messageConvertor"></property>
-</bean>
-
 
 <bean id="cachedConnectionFactory"    class="org.springframework.jms.connection.CachingConnectionFactory">
 	<property name="targetConnectionFactory" ref="jmsConnectionFactory"/>
@@ -48,10 +42,6 @@
    <bean id="sciDest" class="org.apache.activemq.command.ActiveMQQueue">
           <constructor-arg value="CHI.SEARCH" />
    </bean>
-
-	<bean id="messageConvertor"
-    	class="com.elende.restservice.ChiQueryConvertor">
-    </bean>
 
 <!-- 
 	<bean id="producerTemplate"

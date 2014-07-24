@@ -57,18 +57,18 @@ public class TestQueryConvertor {
 		
 		
 		ch1 = new CHIQuery();
-		ch1.setId("1234567");
-		ch1.setIdType("CHI");
+		ch1.setDOB("1234567");
+		ch1.setUniqueIdentifier("33");
 		
 		
 		badMessage = sess.createMapMessage();
-		badMessage.setString("Id", "123446");
-		badMessage.setString("IdType", "CHI");
+		badMessage.setString("surname","123446");
+		badMessage.setString("uniqueIdentifier", "CHI");
 	
 		goodMessage = sess.createMapMessage();
-		goodMessage.setString("Id", "123446");
+		goodMessage.setString("surname", "123446");
 		goodMessage.setBooleanProperty("ISCASPER", true);
-		goodMessage.setString("IdType", "CHI");
+		goodMessage.setString("uniqueIdentifier", "CHI");
 		
 		
 	}
@@ -109,8 +109,8 @@ public class TestQueryConvertor {
 	@Test
 	public void testgoodFromMessage() throws MessageConversionException, JMSException {
 		CHIQuery chi = QueryConvertor.fromMessage(goodMessage);
-		assertTrue(chi.getId()=="123446");
-		assertTrue(chi.getIdType()=="CHI");
+		assertTrue(chi.getSurname()=="123446");
+		assertTrue(chi.getUniqueIdentifier()=="CHI");
 		
 	}
 	

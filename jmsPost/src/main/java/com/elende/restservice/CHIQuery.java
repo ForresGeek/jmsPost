@@ -2,54 +2,84 @@ package com.elende.restservice;
 
 public class CHIQuery {
 
-	private String Id;
-	private String IdType;
+	
+	
+	
+	
+	/*
+	 * 
+	 * 
+	 * {
+  		"uniqueIdentifier": "ABC123",
+  		"nhsNumber": "TEST123",
+  		"forename": "Test",
+  		"surname": "Person",
+  		"DOB": "1948-01-01"
+}
+
+	 * 
+	 * 
+	 */
+	
+	
+	
+	
+	
+	
+	private String uniqueIdentifier;
+	private String nhsNumber;
+	private String forename;
+	private String surname;
+	private String DOB;
+	public String getUniqueIdentifier() {
+		return uniqueIdentifier;
+	}
+	public void setUniqueIdentifier(String uniqueIdentifier) {
+		this.uniqueIdentifier = uniqueIdentifier;
+	}
+	public String getNhsNumber() {
+		return nhsNumber;
+	}
+	public void setNhsNumber(String nhsNumber) {
+		this.nhsNumber = nhsNumber;
+	}
+	public String getForename() {
+		return forename;
+	}
+	public void setForename(String forename) {
+		this.forename = forename;
+	}
+	public String getSurname() {
+		return surname;
+	}
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
+	public String getDOB() {
+		return DOB;
+	}
+	public void setDOB(String dOB) {
+		DOB = dOB;
+	}
 	@Override
 	public String toString() {
-		return "CHIQuery [" + (Id != null ? "Id=" + Id + ", " : "")
-				+ (IdType != null ? "IdType=" + IdType : "") + "]";
+		return "CHIQuery ["
+				+ (uniqueIdentifier != null ? "uniqueIdentifier="
+						+ uniqueIdentifier + ", " : "")
+				+ (nhsNumber != null ? "nhsNumber=" + nhsNumber + ", " : "")
+				+ (forename != null ? "forename=" + forename + ", " : "")
+				+ (surname != null ? "surname=" + surname + ", " : "")
+				+ (DOB != null ? "DOB=" + DOB : "") + "]";
 	}
-	public String getId() {
-		return Id;
-	}
-	public void setId(String id) {
-		Id = id;
-	}
-	public String getIdType() {
-		return IdType;
-	}
-	public void setIdType(String idType) {
-		IdType = idType;
-	}
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((Id == null) ? 0 : Id.hashCode());
-		result = prime * result + ((IdType == null) ? 0 : IdType.hashCode());
-		return result;
-	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		CHIQuery other = (CHIQuery) obj;
-		if (Id == null) {
-			if (other.Id != null)
-				return false;
-		} else if (!Id.equals(other.Id))
-			return false;
-		if (IdType == null) {
-			if (other.IdType != null)
-				return false;
-		} else if (!IdType.equals(other.IdType))
-			return false;
-		return true;
-	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

@@ -12,6 +12,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.elende.restservice.CHIQuery;
 import com.elende.restservice.jmsPost;
 
 public class TestJmsPost {
@@ -31,14 +32,23 @@ public class TestJmsPost {
 	}
 
 	
-	@Ignore
+	
 	@Test
+	@Ignore
 	public void testJmsPost() {
 		ClassPathXmlApplicationContext context  = new ClassPathXmlApplicationContext("beans.xml");
 		
 		com.elende.restservice.jmsPost jP = new jmsPost();
 		
-		String resp = jP.newPost("CHI", "123456");
+		CHIQuery chi = new CHIQuery();
+		
+		chi.setDOB("1969-04-02");
+		chi.setForename("lee");
+		chi.setSurname("dyson");
+		chi.setNhsNumber("1234567890");
+		chi.setUniqueIdentifier("33");
+		
+		String resp = jP.jsonPost(chi);
 		
 		assertTrue(resp.startsWith("OK"));
 		
