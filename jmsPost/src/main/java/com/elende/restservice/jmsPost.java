@@ -104,6 +104,7 @@ public class jmsPost   {
 	  @POST
 	  @Produces(MediaType.TEXT_PLAIN)
 	  @Consumes(MediaType.APPLICATION_JSON)
+	  @Path("/jsonPost")
 	  public String jsonPost(CHIQuery chi)  		
 	  {
 		  
