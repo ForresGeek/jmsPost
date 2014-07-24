@@ -177,6 +177,14 @@
   	
   	
   	<dependency>
+		<groupId>com.sun.jersey</groupId>
+		<artifactId>jersey-json</artifactId>
+		<version>1.8</version>
+	</dependency>
+  	
+  	
+  	
+  	<dependency>
   <groupId>org.apache.activemq</groupId>
   <artifactId>activemq-all</artifactId>
   <version>5.10.0</version>

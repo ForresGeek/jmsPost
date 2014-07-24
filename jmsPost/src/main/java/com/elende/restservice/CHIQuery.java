@@ -1,5 +1,8 @@
 package com.elende.restservice;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "CHIQuery")
 public class CHIQuery {
 
 	
