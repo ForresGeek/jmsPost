@@ -43,6 +43,7 @@ public class ContextListener implements ServletContextListener {
     	try {
             this.producer.close();
             this.session.close();
+            this.connection.stop();
             this.connection.close();
         } catch (JMSException e) {
             LOGGER.warn("tearDown()", e);
