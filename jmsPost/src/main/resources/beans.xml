@@ -8,9 +8,6 @@
 
 
 
-
-
-
 <bean id="cachedConnectionFactory"    class="org.springframework.jms.connection.CachingConnectionFactory">
 	<property name="targetConnectionFactory" ref="jmsConnectionFactory"/>
 	<property name="sessionCacheSize" value="2"/>

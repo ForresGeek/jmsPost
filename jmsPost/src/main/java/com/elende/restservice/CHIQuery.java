@@ -2,12 +2,9 @@ package com.elende.restservice;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+
 @XmlRootElement(name = "CHIQuery")
 public class CHIQuery {
-
-	
-	
-	
 	
 	/*
 	 * 
@@ -24,16 +21,17 @@ public class CHIQuery {
 	 * 
 	 */
 	
-	
-	
-	
-	
-	
 	private String uniqueIdentifier;
 	private String nhsNumber;
 	private String forename;
 	private String surname;
 	private String DOB;
+	private String sex;
+	private String postCode;
+	
+	
+	
+	
 	public String getUniqueIdentifier() {
 		return uniqueIdentifier;
 	}
@@ -64,6 +62,8 @@ public class CHIQuery {
 	public void setDOB(String dOB) {
 		DOB = dOB;
 	}
+	
+	
 	@Override
 	public String toString() {
 		return "CHIQuery ["
